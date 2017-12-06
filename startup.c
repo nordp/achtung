@@ -1,7 +1,7 @@
-/*
- * 	startup.c
- *
- */
+#include "ascii.h"
+#include "graphicdisplay.h"
+#include "keypad.h"
+
 void startup(void) __attribute__((naked)) __attribute__((section (".start_section")) );
 
 void startup ( void )

@@ -131,6 +131,15 @@ monitor restart</PostConnectCommands>
   </Settings>
   <VirtualDirectory Name="src">
     <File Name="startup.c"/>
+    <File Name="graphicdisplay.c"/>
+    <File Name="gpio.h"/>
+    <File Name="ascii.c"/>
+    <File Name="delay.c"/>
+    <File Name="delay.h"/>
+    <File Name="graphicdisplay.h"/>
+    <File Name="ascii.h"/>
+    <File Name="keypad.c"/>
+    <File Name="keypad.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
