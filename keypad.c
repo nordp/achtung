@@ -35,7 +35,7 @@ unsigned char keyb(void)
 	unsigned char col;
 	for (row=1; row <= 4; row++) {
 		activateRow(row);
-		if (col = getColumn()){
+		if (col = readColumn()){
 			activateRow(0);
 			return key[4*(row-1)+(col-1)];
 		}
