@@ -37,6 +37,8 @@ unsigned char ascii_read_controller( void )
 
 void ascii_write_cmd( unsigned char command )
 {
+	while(ascii_read_status() & 0x80)
+	{}
 	ascii_ctrl_bit_clear(B_RS);
 	ascii_ctrl_bit_clear(B_RW);
 	ascii_write_controller(command);
@@ -51,7 +53,7 @@ void ascii_write_data( unsigned char data )
 
 unsigned char ascii_read_status( void )
 {
-	*GPIO_LCD_MODER = 0x00000000;
+	*GPIO_LCD_MODER = 0x00005555;
 	ascii_ctrl_bit_clear(B_RS);
 	ascii_ctrl_bit_set(B_RW);
 	unsigned char rv = ascii_read_controller();
@@ -61,7 +63,7 @@ unsigned char ascii_read_status( void )
 
 unsigned char ascii_read_data( void )
 {
-	*GPIO_LCD_MODER = 0x00000000;
+	*GPIO_LCD_MODER = 0x00005555;
 	ascii_ctrl_bit_set(B_RS);
 	ascii_ctrl_bit_set(B_RW);
 	unsigned char rv = ascii_read_controller();
@@ -81,7 +83,7 @@ void ascii_gotoxy( int x, int y )
 
 void ascii_write_char( unsigned char c )
 {
-	while(ascii_read_status() == 1)
+	while(ascii_read_status() & 0x80)
 	{}
 	delay_micro(8);
 	ascii_write_data(c);
