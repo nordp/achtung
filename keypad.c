@@ -32,14 +32,12 @@ unsigned char keyb(void)
 {
 	unsigned char key[] = {1,2,3,0xA,4,5,6,0xB,7,8,9,0xC,0xE,0,0xF,0xD};
 	int row;
-	for(row = 1 ; row <= 4 ; row++)
-	{
+	unsigned char col;
+	for (row=1; row <= 4; row++) {
 		activateRow(row);
-		char column = readColumn();
-		if (column != 0)
-		{
+		if (col = getColumn()){
 			activateRow(0);
-			return key[4 * (row - 1) + (column - 1)];
+			return key[4*(row-1)+(col-1)];
 		}
 	}
 	activateRow(0);
