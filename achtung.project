@@ -131,15 +131,21 @@ monitor restart</PostConnectCommands>
   </Settings>
   <VirtualDirectory Name="src">
     <File Name="startup.c"/>
-    <File Name="graphicdisplay.c"/>
-    <File Name="gpio.h"/>
-    <File Name="ascii.c"/>
     <File Name="delay.c"/>
     <File Name="delay.h"/>
-    <File Name="graphicdisplay.h"/>
-    <File Name="ascii.h"/>
-    <File Name="keypad.c"/>
-    <File Name="keypad.h"/>
+    <VirtualDirectory Name="gpio">
+      <File Name="ascii.c"/>
+      <File Name="ascii.h"/>
+      <File Name="gpio.h"/>
+      <File Name="graphicdisplay.c"/>
+      <File Name="graphicdisplay.h"/>
+      <File Name="keypad.c"/>
+      <File Name="keypad.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="game">
+      <File Name="game.c"/>
+      <File Name="game.h"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>

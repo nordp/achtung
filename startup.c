@@ -1,6 +1,7 @@
 #include "ascii.h"
 #include "graphicdisplay.h"
 #include "keypad.h"
+#include "game.h"
 
 void startup(void) __attribute__((naked)) __attribute__((section (".start_section")) );
 void app_init(void);
