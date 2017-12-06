@@ -89,6 +89,10 @@ void ascii_write_char( unsigned char c )
 
 void ascii_init(void)
 {
+	*GPIO_LCD_MODER = 0x55555555;
+	*GPIO_LCD_OTYPER = 0xFFFF;
+	*GPIO_LCD_PUPDR = 0x00000000;
+	
 	ascii_write_cmd(0x00111000);
 	delay_micro(39);
 	ascii_write_cmd(0x00001110);

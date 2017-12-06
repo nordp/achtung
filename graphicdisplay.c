@@ -201,8 +201,12 @@ void pixel(uint8_t x, uint8_t y, uint8_t set)
 	graphic_write_data(mask, controller);
 }
 
-void graphic_initialize(void)
+void graphic_init(void)
 {
+	*GPIO_LCD_MODER = 0x55555555;
+	*GPIO_LCD_OTYPER = 0xFFFF;
+	*GPIO_LCD_PUPDR = 0x00000000;
+	
 	graphic_ctrl_bit_set(B_E);
 	delay_micro(10);
 	graphic_ctrl_bit_clear(B_CS1 | B_CS2 | B_RST | B_E);

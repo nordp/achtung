@@ -3,6 +3,7 @@
 #include "keypad.h"
 
 void startup(void) __attribute__((naked)) __attribute__((section (".start_section")) );
+void app_init(void);
 
 void startup ( void )
 {
@@ -14,7 +15,18 @@ __asm volatile(
 	) ;
 }
 
+void app_init(void)
+{
+	
+}
+
 void main(void)
 {
+	app_init();
+	keypad_init();
+	graphic_init();
+	ascii_init();
+	
+	
 }
 

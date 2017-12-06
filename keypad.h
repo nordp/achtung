@@ -6,5 +6,6 @@
 unsigned char keyb(void);
 void activateRow(unsigned char r);
 unsigned char readColumn(void);
+void keypad_init(void);
 
 #endif

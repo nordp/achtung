@@ -45,3 +45,10 @@ unsigned char keyb(void)
 	activateRow(0);
 	return 0xFF;
 }
+
+void keypad_init(void)
+{
+	*GPIO_KEYPAD_MODER = 0x55005555;
+	*GPIO_KEYPAD_OTYPER = 0x00FF;
+	*GPIO_KEYPAD_PUPDR = 0x00AA0000;
+}
