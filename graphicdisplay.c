@@ -125,6 +125,23 @@ void graphic_clear_screen(void)
 	}
 }
 
+//Board array should be int[64][4], where 64 represents the 64 rows and 4 represents the 128 columns.
+//Each int is 32 bits, so 32 columns can be represented by each int.
+void draw_pixels(int pixels[64][4])
+{
+	for(int y = 0 ; y < 64 ; y++)
+	{
+		for(int x32 = 0 ; x32 < 4 ; x32++)
+		{
+			for(int x = 0 ; x < 32 ; x++)
+			{
+				int bit = ( (pixels[y][x32] & (1 << x )) != 0 ); //Check the bit inside the array that corresponds to the current pixel
+				pixel(x32 * 32 + x, y, bit);
+			}
+		}
+	}
+}
+
 void pixel(uint8_t x, uint8_t y, uint8_t set)
 {
 	uint8_t mask;

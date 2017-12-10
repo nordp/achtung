@@ -5,6 +5,8 @@ bool alivePlayers[4];
 bool paused;
 int numPlayers;
 
+
+
 void startSession(int numberOfPlayers)
 {
 	numPlayers = numberOfPlayers;

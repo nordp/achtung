@@ -31,6 +31,23 @@ void main(void)
 	graphic_init();
 	ascii_init();
 	
-	
+	while(1)
+	{
+		//maybe show a welcome screen or something
+		//if not running yet, start session
+		if(update() == true)
+		{
+			//update scores
+			//if session is done:
+			//		winner winner chicken dinner
+			//		delay for a bit?
+			//		start new session probably
+			//else:
+			//		delay for a bit
+			//		start new round
+		}
+		//update graphics (draw_pixels)
+		delay_milli(10);
+	}
 }
 
