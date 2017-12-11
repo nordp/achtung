@@ -192,9 +192,10 @@ int getNumberOfAlivePlayers(int players)
 	int total = 0;
 	for(int i = 0 ; i < players ; i++)
 	{
-		if(alivePlayers[i] = true)
+		if(alivePlayers[i] == true)
 			total += 1;
 	}
+	return total;
 }
 
 int* getBoard(void)

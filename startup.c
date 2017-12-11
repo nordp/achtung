@@ -78,33 +78,35 @@ void main(void)
 		targetScore = keypress * 5; //Set the target score to number of players times five.
 		
 		displayScores(getScores());
+		
+		while(!isPauseReleased()){}
+		startRound();
+		setPaused(false); //Temporary
+		
+			
 		while(1) //Main game loop, with update calls. This is also where new rounds are started within one session.
 		{
-			if(isRoundActive() == false){
-				startRound();
-				setPaused(false); //Temporary
-			}
-			if(update(getCurrentDirections()) == true) //NOTE: update() is the main update method. Returns true if the game is over.
+			if(update(getCurrentDirections()) == false) //NOTE: update() is the main update method. Returns true if the game is over.
 			{
+				draw_pixels(getBoard());
+				delay_milli(10);
+			} else {
 				displayScores(getScores());
 				unsigned char highscore = getHighestScore();
 				if(highscore >= targetScore)
 				{
 					displayWinner(getWinner(), highscore);
 					
-					while(1) //Wait for user to press pause key
-					{
-						char pausePressed = 0; //char pausePressed = isPauseKeyReleased();
-						if(pausePressed)
-							break;
-					}
+					while(!isPauseReleased()){}
+					graphic_clear_screen();
 					break; //Break the game loop and start a new session with the outer loop.
 				}
+				
+				while(!isPauseReleased()){}
+				startRound();
+				setPaused(false); //Temporary
 			}
-			draw_pixels(getBoard());
-			delay_milli(10);
 		}
-		
 	}
 }
 
