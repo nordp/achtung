@@ -35,12 +35,6 @@ void main(void)
 	//displayScores(scores);
 	//displayWinner("Hej", getCurrentDirections());
 	
-	//while(!isPauseReleased()){}
-	//while(!isPauseReleased()){}
-	//while(!isPauseReleased()){}
-	//while(!isPauseReleased()){}
-	//while(!isPauseReleased()){}
-	
 	int test[64][4];
 	for(int i = 0 ; i < 64 ; i++){
 		for(int j = 0 ; j < 4 ; j++){
@@ -73,17 +67,15 @@ void main(void)
 		{
 		displayWelcome();
 		
+		while(!isPauseReleased()){}
 		int targetScore = 0;
-		while(1) //Wait for user to input number of players
-		{
-			char keypress = 2; //char keypress = getNumberOfPlayersInput();
-			if(keypress != 0)
-			{
-				startSession(keypress);
-				targetScore = keypress * 5; //Set the target score to number of players times five.
-				break;
-			}
-		}
+		
+		displaySelectNPlayers();
+		char keypress = 0;
+		while(!(keypress = playersSelected())){}
+		
+		startSession(keypress);
+		targetScore = keypress * 5; //Set the target score to number of players times five.
 		
 		displayScores(getScores());
 		while(1) //Main game loop, with update calls. This is also where new rounds are started within one session.

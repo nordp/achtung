@@ -1,30 +1,30 @@
 #include "scoreboard.h"
 
-void displayScores(char scores[4]){
+void displayScores(signed char* scores){
 	ascii_clear_screen();
-	if(scores[0] != -1){
+	if(*scores != -1){
 		ascii_gotoxy(1,1);
 		ascii_write_word(getPlayerName(0));
 		ascii_write_word(":  ");
-		ascii_write_number(scores[0]);
+		ascii_write_number(*scores++);
 	}
-	if(scores[1] != -1){
+	if(*scores != -1){
 		ascii_gotoxy(11,1);
 		ascii_write_word(getPlayerName(1));
 		ascii_write_word(": ");
-		ascii_write_number(scores[1]);
+		ascii_write_number(*scores++);
 	}
-	if(scores[2] != -1){
+	if(*scores != -1){
 		ascii_gotoxy(1,2);
 		ascii_write_word(getPlayerName(2));
 		ascii_write_word(": ");
-		ascii_write_number(scores[2]);
+		ascii_write_number(*scores++);
 	}
-	if(scores[3] != -1){
+	if(*scores != -1){
 		ascii_gotoxy(11,2);
 		ascii_write_word(getPlayerName(3));
 		ascii_write_word(":  ");
-		ascii_write_number(scores[3]);
+		ascii_write_number(*scores++);
 	}
 }
 
@@ -45,6 +45,14 @@ void displayWelcome(void){
 	ascii_write_word("ACHTUNG DIE KURVE!");
 	ascii_gotoxy(7,2);
 	ascii_write_word("Press A!");
+}
+
+void displaySelectNPlayers(void){
+	ascii_clear_screen();
+	ascii_gotoxy(2,1);
+	ascii_write_word("SELECT # OF PLAYERS!");
+	ascii_gotoxy(4,2);
+	ascii_write_word("2-4 Players");
 }
 
 char* getPlayerName(char player)

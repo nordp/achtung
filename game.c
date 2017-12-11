@@ -21,7 +21,7 @@ double directions[4]; //In radians
 void startSession(unsigned int numberOfPlayers)
 {
 	numPlayers = numberOfPlayers;
-	resetScores(4);
+	resetScores(numberOfPlayers);
 	roundActive = false;
 }
 
@@ -210,9 +210,9 @@ bool update(char directionControls)
 		{
 			if(alivePlayers[i] == true)
 			{
-				if(directionControls & (1 << (2*i)) != 0)
+				if(directionControls & (1 << (2*i)))
 					directions[i] += TURN_RATE;
-				else if(directionControls & (1 << (2*i + 1)) != 0)
+				else if(directionControls & (1 << (2*i + 1)))
 					directions[i] -= TURN_RATE;
 				
 				double oldx = positions[i][0]; //Weird bug if we don't do this :-)
