@@ -31,7 +31,34 @@ void main(void)
 	graphic_init();
 	ascii_init();
 	
-	while(1)
+	int test[64][4];
+	for(int i = 0 ; i < 64 ; i++){
+		for(int j = 0 ; j < 4 ; j++){
+			test[i][j] = 0;
+		}
+	}
+	test[50][0] = 0x00000001;
+	test[51][0] = 0x00000002;
+	test[52][0] = 0x00000004;
+	test[53][0] = 0x00000008;
+	test[54][0] = 0x00000010;
+	test[50][1] = 0x00000001;
+	test[51][1] = 0x00000002;
+	test[52][1] = 0x00000004;
+	test[53][1] = 0x00000008;
+	test[54][1] = 0x00000010;
+	test[50][2] = 0x00000001;
+	test[51][2] = 0x00000002;
+	test[52][2] = 0x00000004;
+	test[53][2] = 0x00000008;
+	test[54][2] = 0x00000010;
+	test[50][3] = 0x00000001;
+	test[51][3] = 0x00000002;
+	test[52][3] = 0x00000004;
+	test[53][3] = 0x00000008;
+	test[54][3] = 0x00000010;
+	draw_pixels(test);
+	while(0)
 	{
 		//maybe show a welcome screen or something
 		//if not running yet, start session
