@@ -33,13 +33,13 @@ void main(void)
 	//displayWinner("Philip", 211);
 	//char scores[] = {10,50,20,10};
 	//displayScores(scores);
-	displayWinner("Hej", getCurrentDirections());
+	//displayWinner("Hej", getCurrentDirections());
 	
-	while(!isPauseReleased()){}
-	while(!isPauseReleased()){}
-	while(!isPauseReleased()){}
-	while(!isPauseReleased()){}
-	while(!isPauseReleased()){}
+	//while(!isPauseReleased()){}
+	//while(!isPauseReleased()){}
+	//while(!isPauseReleased()){}
+	//while(!isPauseReleased()){}
+	//while(!isPauseReleased()){}
 	
 	int test[64][4];
 	for(int i = 0 ; i < 64 ; i++){
@@ -92,7 +92,7 @@ void main(void)
 				startRound();
 				setPaused(false); //Temporary
 			}
-			if(update(0) == true) //NOTE: update() is the main update method. Returns true if the game is over.
+			if(update(getCurrentDirections()) == true) //NOTE: update() is the main update method. Returns true if the game is over.
 			{
 				displayScores(getScores());
 				unsigned char highscore = getHighestScore();
