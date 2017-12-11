@@ -2,6 +2,9 @@
 
 void delay_250ns( void )
 {
+	#ifdef SIMULATOR
+		return;
+	#endif
 	/* SystemCoreClock = 168000000 */
 	*STK_CTRL = 0;
 	*STK_LOAD = ((168 / 4) - 1);
@@ -15,6 +18,9 @@ void delay_250ns( void )
 
 void delay_500ns( void )
 {
+	#ifdef SIMULATOR
+		return;
+	#endif
 	/* SystemCoreClock = 168000000 */
 	*STK_CTRL = 0;
 	*STK_LOAD = ((168 / 2) - 1);
@@ -28,6 +34,9 @@ void delay_500ns( void )
 
 void delay_micro(unsigned int us)
 {
+	#ifdef SIMULATOR
+		return;
+	#endif
 	while(us--)
 	{
 		delay_250ns();
@@ -40,8 +49,7 @@ void delay_micro(unsigned int us)
 void delay_milli( unsigned int ms )
 {
 	#ifdef SIMULATOR
-		ms /= 1000;
-		ms++;
+		return;
 	#endif
 	int i;
 	while( ms-- )

@@ -1,5 +1,7 @@
 #include "graphicdisplay.h"
 
+int currentDisplay[64][4];
+
 void graphic_ctrl_bit_set( uint8_t x )
 {
 	uint8_t c;
@@ -133,10 +135,22 @@ void draw_pixels(int pixels[64][4])
 	{
 		for(int x32 = 0 ; x32 < 4 ; x32++)
 		{
-			for(int x = 0 ; x < 32 ; x++)
+			if(pixels[y][x32] != currentDisplay[y][x32]) //Make sure we only loop through the pixels if something has changed
 			{
-				int bit = ( (pixels[y][x32] & (1 << x )) != 0 ); //Check the bit inside the array that corresponds to the current pixel
-				pixel(x32 * 32 + x, y, bit);
+				for(int x = 0 ; x < 32 ; x++)
+				{
+					int newBit = ( (pixels[y][x32] & (1 << x )) != 0 ); //Check the bit inside the array that corresponds to the current pixel
+					int oldBit = ( (currentDisplay[y][x32] & (1 << x )) != 0 ); //Do the same for the currently displayed matrix
+					if(oldBit != newBit) //Make sure we only call the pixel method if this pixel has changed
+					{
+						pixel(x32 * 32 + x, y, newBit);
+						if(newBit == 0)
+							currentDisplay[y][x32] &= ~(1 << x );
+						else
+							currentDisplay[y][x32] |= (1 << x );
+					}
+				}
+			
 			}
 		}
 	}
@@ -196,5 +210,13 @@ void graphic_init(void)
 	graphic_write_command(LCD_SET_ADD, B_CS1 | B_CS2);
 	graphic_write_command(LCD_SET_PAGE, B_CS1 | B_CS2);
 	select_controller(0);
+	
+	for(int i = 0 ; i < 64 ; i++)
+	{
+		for(int j = 0 ; j < 4 ; j++)
+		{
+			currentDisplay[i][j] = 0;
+		}
+	}
 }
 
