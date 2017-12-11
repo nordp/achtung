@@ -12,6 +12,9 @@ unsigned char ascii_read_status( void );
 unsigned char ascii_read_data( void );
 void ascii_gotoxy( int x, int y );
 void ascii_write_char( unsigned char c );
+void ascii_clear_screen(void);
+void ascii_write_word(char* word);
+void ascii_write_number(char number);
 void ascii_init(void);
 
 #endif

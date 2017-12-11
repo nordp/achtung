@@ -81,12 +81,36 @@ void ascii_gotoxy( int x, int y )
 	ascii_write_cmd(0x80 | address);
 }
 
+void ascii_clear_screen(void)
+{
+	ascii_write_cmd(1);
+	delay_milli(2);
+}
+
 void ascii_write_char( unsigned char c )
 {
 	while(ascii_read_status() & 0x80)
 	{}
 	delay_micro(8);
 	ascii_write_data(c);
+}
+
+void ascii_write_word(char* word)
+{
+	while(*word)
+	{
+		ascii_write_char( *word++ );
+	} 
+}
+
+void ascii_write_number(char number){
+	char base = 0x30;
+	if(number >= 100)
+		ascii_write_char(number/100 + base);
+	if(number >= 10)
+		ascii_write_char((number/10)%10 + base);
+	
+	ascii_write_char(number%10 + base);
 }
 
 void ascii_init(void)

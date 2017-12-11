@@ -27,9 +27,14 @@ void app_init(void)
 void main(void)
 {
 	app_init();
-	keypad_init();
-	graphic_init();
+	//keypad_init();
+	//graphic_init();
 	ascii_init();
+	
+	//displayWinner("Philip", 211);
+	//displayWelcome();
+	char scores[] = {10,50,20,10};
+	displayScores(scores);
 	
 	while(1)
 	{

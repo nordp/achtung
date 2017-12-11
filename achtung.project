@@ -146,6 +146,10 @@ monitor restart</PostConnectCommands>
       <File Name="game.c"/>
       <File Name="game.h"/>
     </VirtualDirectory>
+    <VirtualDirectory Name="ui">
+      <File Name="scoreboard.c"/>
+      <File Name="scoreboard.h"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>
