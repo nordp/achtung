@@ -3,8 +3,9 @@
 #include "ascii.h"
 
 void displayScores(char scores[4]);
-void displayWinner(char* name, int points);
+void displayWinner(char player, char points);
 void displayWelcome(void);
+char* getPlayerName(char player);
 
 
 #endif

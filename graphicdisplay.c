@@ -207,6 +207,7 @@ void graphic_init(void)
 	graphic_write_command(LCD_OFF, B_CS1 | B_CS2);
 	graphic_write_command(LCD_ON, B_CS1 | B_CS2);
 	graphic_write_command(LCD_DISP_START, B_CS1 | B_CS2);
+	//graphic_clear_screen();
 	graphic_write_command(LCD_SET_ADD, B_CS1 | B_CS2);
 	graphic_write_command(LCD_SET_PAGE, B_CS1 | B_CS2);
 	select_controller(0);

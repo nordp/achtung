@@ -42,6 +42,8 @@
       <File Name="controller.c"/>
       <File Name="controller.h"/>
     </VirtualDirectory>
+    <File Name="math.c"/>
+    <File Name="math.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
     <File Name="md407-ram.x"/>

@@ -68,23 +68,51 @@ void main(void)
 	test[53][3] = 0x00000008;
 	test[54][3] = 0x00000010;
 	draw_pixels(test);
-	while(0)
-	{
-		displayWelcome();
-		//if not running yet, start session
-		if(update() == true)
+	
+	while(1) //Loop back to welcome screen after finishing a game session
 		{
-			//update scores
-			//if session is done:
-			//		winner winner chicken dinner
-			//		delay for a bit?
-			//		start new session probably
-			//else:
-			//		delay for a bit
-			//		start new round
+		displayWelcome();
+		
+		int targetScore = 0;
+		while(1) //Wait for user to input number of players
+		{
+			char keypress = 2; //char keypress = getNumberOfPlayersInput();
+			if(keypress != 0)
+			{
+				startSession(keypress);
+				targetScore = keypress * 5; //Set the target score to number of players times five.
+				break;
+			}
 		}
-		//update graphics (draw_pixels)
-		delay_milli(10);
+		
+		displayScores(getScores());
+		while(1) //Main game loop, with update calls. This is also where new rounds are started within one session.
+		{
+			if(isRoundActive() == false){
+				startRound();
+				setPaused(false); //Temporary
+			}
+			if(update(0) == true) //NOTE: update() is the main update method. Returns true if the game is over.
+			{
+				displayScores(getScores());
+				unsigned char highscore = getHighestScore();
+				if(highscore >= targetScore)
+				{
+					displayWinner(getWinner(), highscore);
+					
+					while(1) //Wait for user to press pause key
+					{
+						char pausePressed = 0; //char pausePressed = isPauseKeyReleased();
+						if(pausePressed)
+							break;
+					}
+					break; //Break the game loop and start a new session with the outer loop.
+				}
+			}
+			draw_pixels(getBoard());
+			delay_milli(10);
+		}
+		
 	}
 }
 
