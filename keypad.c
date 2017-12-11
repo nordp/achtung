@@ -18,6 +18,7 @@ void activateRow(unsigned char r)
 	}
 }
 
+/*
 unsigned char readColumn(void)
 {
 	unsigned char c = *GPIO_KEYPAD_IDR_HIGH;
@@ -26,8 +27,9 @@ unsigned char readColumn(void)
 	if( c & 0x2) return 2;
 	if( c & 0x1) return 1;
 	return 0;
-}
+}*/
 
+/*
 unsigned char keyb(void)
 {
 	unsigned char key[] = {1,2,3,0xA,4,5,6,0xB,7,8,9,0xC,0xE,0,0xF,0xD};
@@ -42,6 +44,17 @@ unsigned char keyb(void)
 	}
 	activateRow(0);
 	return 0xFF;
+}
+*/
+unsigned short pollKeys(void)
+{
+	unsigned short values = 0;
+	unsigned char row, col;
+	for(row=1; row<= 4; row++){
+		activateRow(row);
+		values |= (*GPIO_KEYPAD_IDR_HIGH & 0xF) << (4 * (row-1));
+	}
+	return values;
 }
 
 void keypad_init(void)

@@ -1,6 +1,6 @@
-#include "ascii.h"
+#include "scoreboard.h"
 #include "graphicdisplay.h"
-#include "keypad.h"
+#include "controller.h"
 #include "game.h"
 
 void startup(void) __attribute__((naked)) __attribute__((section (".start_section")) );
@@ -25,8 +25,7 @@ void app_init(void)
 }
 
 void main(void)
-{
-	app_init();
+{	app_init();
 	keypad_init();
 	graphic_init();
 	ascii_init();
@@ -34,6 +33,13 @@ void main(void)
 	//displayWinner("Philip", 211);
 	//char scores[] = {10,50,20,10};
 	//displayScores(scores);
+	displayWinner("Hej", getCurrentDirections());
+	
+	while(!isPauseReleased()){}
+	while(!isPauseReleased()){}
+	while(!isPauseReleased()){}
+	while(!isPauseReleased()){}
+	while(!isPauseReleased()){}
 	
 	int test[64][4];
 	for(int i = 0 ; i < 64 ; i++){

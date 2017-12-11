@@ -39,6 +39,8 @@
     <VirtualDirectory Name="ui">
       <File Name="scoreboard.c"/>
       <File Name="scoreboard.h"/>
+      <File Name="controller.c"/>
+      <File Name="controller.h"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="resources">
